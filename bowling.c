@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
     // printf("\n");
     // printf("input: %s\n", argv[1]);
 
-//   int throws[] = [1,4,4,5,6,4,5,5,10,0,0,1,7,3,6,4,10,0,2,8,6]
+//   int throws[] = [1,4,4,5,6,4,5,5,10,0,0,1,7,3,6,4,10,0,2,8,6] //Cliff said cannot hard code this in
 //   bool strike = FALSE;
 
 //     for (i=0;i<22;i++){
