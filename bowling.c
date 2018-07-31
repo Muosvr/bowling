@@ -2,43 +2,49 @@
 #include <string.h>
 #include <stdlib.h>
 
-int main(int argc, char *argv[]){
-    if(argc > 23 || argc < 22){
-        printf("Usage: bowling int int int ...\n");
-        return 1;
+int main(void){
+    // int throws[] = {1,4,4,5,6,4,5,5,10,0,0,1,7,3,6,4,10,0,2,8,6};
+    // int throws[] = {1,4,10,2,5,1,4,6};
+    // int throws[] = {10,0,3,6};
+    int throws[] = {10,0,10,0,4,2};
+    int size = sizeof(throws)/sizeof(throws[0]);
+    int sum = 0;
+    int strike = 0;
+    int spare = 0;
+    int counter = 0;
+    int frameCount = 0;
+    // printf("%d\n",size);
+
+    for(int i=0; i<size;i++){
+        printf("%d\n",throws[i]);
+
+        if(throws[i]==10){
+            strike = 2;
+            printf("Strike\n");
+        }
+
+        counter ++;
+        frameCount += throws[i];
+        if(counter%2==0){
+            if(frameCount == 10 &&throws[i]!=0){
+                printf("Spare\n");
+                spare = 1;
+            }
+            // printf("%d\n",frameCount);
+            frameCount = 0;
+        }
+
+        if(strike>0 && throws[i] != 0){
+            sum += throws[i]+throws[i+1]+throws[i+2];
+            strike --;
+        }else if(spare>0){
+            sum += throws[i]+throws[i+1];
+            spare = 0;
+        }else{
+            sum += throws[i];
+        }
+
+        printf("Sum: %d\n",sum);
     }
-
-    // int throws[23];
-    // int j = 0;
-
-    for(int i=0; i<23; i++){
-        printf("%s",argv[i+1]);
-
-    }
-
-    // for (int i=0;i<strlen(argv[1]);i++){
-    //     // printf("%c",argv[1][i]);
-    //     if(argv[1][i]!=','){
-    //         throws[j] = argv[1][i]-48;
-    //         printf("%d",throws[j]);
-    //         j ++;
-    //         // if(j>20){
-    //         //     break;
-    //         // }
-    //     }
-    //     // throws[i]=argv[1][i]
-    // }
-    // printf("\n");
-    // printf("input: %s\n", argv[1]);
-
-//   int throws[] = [1,4,4,5,6,4,5,5,10,0,0,1,7,3,6,4,10,0,2,8,6] //Cliff said cannot hard code this in
-//   bool strike = FALSE;
-
-//     for (i=0;i<22;i++){
-//         if (throws[i] == 10){
-//             //This is a trike
-//             strike = TRUE;
-//         }
-//     }
-
+    printf("%d\n",sum);
 }
